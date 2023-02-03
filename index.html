@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OKTUBRE</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://fav.farm/✅" />
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">Ángel de los perdedores</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Salando las heridas</span>
+    </div>
+    <div data-key="67" class="key">
+      <kbd>C</kbd>
+      <span class="sound">Caña seca y membrillo</span>
+    </div>
+    <div data-key="69" class="key">
+      <kbd>E</kbd>
+      <span class="sound">Etiqueta negra</span>
+    </div>
+    <div data-key="84" class="key">
+      <kbd>T</kbd>
+      <span class="sound">Tarea <br>Fina</span>
+    </div>
+    <div data-key="80" class="key">
+      <kbd>P</kbd>
+      <span class="sound">Pibe de los astilleros</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">Jijiji <br>(No lo soñe)</span>
+    </div>
+    <div data-key="86" class="key">
+      <kbd>V</kbd>
+      <span class="sound">Vencedores vencidos</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">Luzbelito y las sirenas</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/angel.mp3"></audio>
+  <audio data-key="83" src="sounds/salando.mp3"></audio>
+  <audio data-key="67" src="sounds/membrillo.mp3"></audio>
+  <audio data-key="69" src="sounds/etiqueta.mp3"></audio>
+  <audio data-key="84" src="sounds/tarea.mp3"></audio>
+  <audio data-key="80" src="sounds/pibe.mp3"></audio>
+  <audio data-key="74" src="sounds/jijiji.mp3"></audio>
+  <audio data-key="86" src="sounds/vencedores.mp3"></audio>
+  <audio data-key="76" src="sounds/luzbelito.mp3"></audio>
+
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+ const keys = Array.from(document.querySelectorAll('.key'));
+ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+ window.addEventListener('keydown', playSound); 
+</script>
+
+
+</body>
+</html>
